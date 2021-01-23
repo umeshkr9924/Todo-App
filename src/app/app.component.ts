@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Todo } from './todo';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,46 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Todo-App';
+
+  todos: Todo = [];
+  name = '';
+  editable = false;
+  addButton = "ADD"
+  editableIndex = '';
+
+  Add() {
+  if(this.editable == true) {
+     const TodosList: Todo = {
+     name: this.name,
+     editable: this.editable
+    } 
+    this.todos.splice(this.editableIndex,1,TodosList);
+    this.addButton="ADD";
+    this.editable=false;
+
+  }
+  else {
+    const TodosList: Todo = {
+     name: this.name,
+     editable: this.editable
+    }
+    this.todos.splice(0,0,TodosList);
+    this.name="";
+
+  }
+
+ }
+  Delete(index)
+  {
+     this.todos.splice(index,1);
+
+  }
+  Edit(item,index)
+  {
+   this.editable=true;
+   this.addButton="UPDATE";
+   this.name=item;
+   this.editableIndex=index;
+
+  }
 }

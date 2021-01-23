@@ -1,0 +1,10 @@
+[user]
+	name = umeshkr9924
+	email = umeshkr9924@gmail.com
+[http]
+	proxy = http://edcguest:edcguest@172.31.100.29:3128/
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
